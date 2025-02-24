@@ -5,3 +5,6 @@
 ### THIS IS YOUR README
 
 Update this file as you go along to record your progress.
+25/02/25
+Edited sketch.jpg to a basic idea of what I want to achieve.
+- sketch based on grandfather clock, simmplified to flashing lights.
