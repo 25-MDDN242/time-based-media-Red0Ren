@@ -1,6 +1,9 @@
 /*
  * use p5.js to draw a clock on a 960x500 canvas
  */
+// Variables
+var bgC = "#141414";
+
 function draw_clock(obj) {
   // draw your own clock here based on the values of obj:
   //    obj.hours goes from 0-23
@@ -11,18 +14,19 @@ function draw_clock(obj) {
   //        < 0 if no alarm is set
   //        = 0 if the alarm is currently going off
   //        > 0 --> the number of seconds until alarm should go off
-  background(50); //  beige
-  fill(200); // dark grey
-  textSize(40);
-  textAlign(CENTER, CENTER);
-  text("YOUR MAIN CLOCK CODE GOES HERE", width / 2, 200);
+// House Keeping
+  background(bgC); // a light black
+  
+  //Grandfather Clock
+  beginShape();
+    // House Keeping
+  stroke("#FF0000");
+  fill(bgC);
+    //drawing
+  vertex(380, 499);
+  vertex(580, 500);
+  vertex(580, 200);
+  vertex(380, 200);
 
-
-  fill(249, 140, 255);// pink
-  ellipse(width / 3, 350, 150);
-  fill(140, 255, 251) // blue
-  ellipse(width / 2, 350, 150);
-  fill(175, 133, 255); // purple
-  ellipse(width / 3 * 2, 350, 150);
-
+  endShape(CLOSE);
 }
