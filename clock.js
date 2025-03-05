@@ -3,6 +3,9 @@
  */
 // Variables
 var bgC = "#141414";
+var bezierY = -20;
+var vertexX = 130;
+var strokeDefault = 3;
 
 function draw_clock(obj) {
   // draw your own clock here based on the values of obj:
@@ -17,16 +20,41 @@ function draw_clock(obj) {
 // House Keeping
   background(bgC); // a light black
   
-  //Grandfather Clock
+  //Grandfather Clock GLOW
   beginShape();
-    // House Keeping
-  stroke("#FF0000");
+    // Colours
+  stroke(60, 0, 90, 150);
+  strokeWeight(20);
   fill(bgC);
     //drawing
-  vertex(380, 499);
-  vertex(580, 500);
-  vertex(580, 200);
-  vertex(380, 200);
+  vertex(380, 499);   // bottom left
+  line(380, 400, 580, 399);
+  vertex(580, 500);   // bottom right
+  vertex(580, vertexX)    // top right
+  bezierVertex(580, bezierY, 380, bezierY, 380, vertexX);   // top right
+  vertex(380, vertexX);   // top left
 
   endShape(CLOSE);
+
+  //Grandfather Clock
+  beginShape();
+    // Colours
+  stroke("#9900FF");
+  strokeWeight(strokeDefault);
+  fill(bgC);
+    //drawing
+  vertex(380, 499);   // bottom left
+  line(380, 400, 580, 399);
+  vertex(580, 500);   // bottom right
+  vertex(580, vertexX)    // top right
+  bezierVertex(580, bezierY, 380, bezierY, 380, vertexX);   // top right
+  vertex(380, vertexX);   // top left
+
+  endShape(CLOSE);
+  
+  // Clock face
+  stroke("#FFFF00");
+  strokeWeight(strokeDefault);
+  circle(480, 120, 160);
+
 }
