@@ -6,6 +6,7 @@ var bgC = "#141414";
 var bezierY = -20;
 var vertexX = 130;
 var strokeDefault = 3;
+var pendulumY = 420
 
 function draw_clock(obj) {
   // draw your own clock here based on the values of obj:
@@ -23,8 +24,8 @@ function draw_clock(obj) {
   //Grandfather Clock GLOW
   beginShape();
     // Colours
-  stroke(60, 0, 90, 150);
-  strokeWeight(20);
+  stroke(60, 0, 90, 90);
+  strokeWeight(50);
   fill(bgC);
     //drawing
   vertex(380, 499);   // bottom left
@@ -57,4 +58,9 @@ function draw_clock(obj) {
   strokeWeight(strokeDefault);
   circle(480, 120, 160);
 
+  // Clock Pendulum
+  noStroke();
+  fill(77, 238, 234);
+  // circle(480, pendulumY, 30);
+  circle(480, pendulumY, 100);
 }
