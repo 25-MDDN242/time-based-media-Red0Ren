@@ -54,13 +54,21 @@ function draw_clock(obj) {
   endShape(CLOSE);
   
   // Clock face
+    // Outline
   stroke("#FFFF00");
   strokeWeight(strokeDefault);
   circle(480, 120, 160);
+    // Hands
+  stroke(252,48,50);
+  strokeWeight(6);
+  line(480,120, 480,46);
 
   // Clock Pendulum
   noStroke();
+    // Tock
+  fill(141, 242, 64);
+  circle(480, pendulumY, 110);
+    // Tick
   fill(77, 238, 234);
-  // circle(480, pendulumY, 30);
-  circle(480, pendulumY, 100);
+  circle(480, pendulumY, 40);
 }
