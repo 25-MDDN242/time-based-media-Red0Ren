@@ -8,3 +8,11 @@ Update this file as you go along to record your progress.
 25/02/25
 Edited sketch.jpg to a basic idea of what I want to achieve.
 - sketch based on grandfather clock, simmplified to flashing lights.
+
+11/03/25
+Added static animations for minutes and seconds
+Needed
+    - Hour and minute hands 
+        - include their functionality
+    - Add real animations to everything.
+
