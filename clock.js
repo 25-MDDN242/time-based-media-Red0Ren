@@ -51,10 +51,22 @@ function clockFace() {
   stroke("#FFFF00");
   strokeWeight(strokeDefault);
   circle(480, 120, 160);
+  // Increments
+  stroke(240,0,255);
+  strokeWeight(4);
+  // 12
+  line(480, 60, 480, 40);
+  // 3
+  line(540, 125, 560, 125);
+  // 6
+  line(480, 180, 480, 200);
+  // 9
+  line(400, 120, 420, 120);
+
   // Hour Hand
-  stroke(252, 48, 50);
-  strokeWeight(6);
-  line(480, 120, 480, 46);
+  // stroke(252, 48, 50);
+  // strokeWeight(6);
+  // line(480, 120, 480, 46);
 }
 
 // Clock Pendulum
