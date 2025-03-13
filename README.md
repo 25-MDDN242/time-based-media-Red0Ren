@@ -20,3 +20,6 @@ Needed
 Added Increments
 
 13/03/25
+1200
+ - Added functionality to clock face and hands
+ 

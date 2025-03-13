@@ -8,6 +8,8 @@ var bezierY = -20;
 var vertexX = 130;
 var strokeDefault = 3;
 var pendulumY = 420;
+// Colour Variables
+var neonCyan = color(77, 238, 234);
 
 // Grandfather Clock GLOW
 function clockGlow() {
@@ -64,7 +66,7 @@ function clockFace(obj) {
   let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0, 12, 0, 360);
   
   // Draw minute hand
-  drawHand(minuteAngle, color(77, 238, 234), 2, 70);
+  drawHand(minuteAngle, neonCyan, 3, 70);
   // Draw hour hand (using white as an example)
   drawHand(hourAngle, color(255, 255, 255), 4, 40);
   
