@@ -20,19 +20,31 @@ neon Blue =     color(51, 75, 255)
 neon Purple =   color(153, 0, 255)
 */
 
+// Alarm
+function alarmLights() {
+  
+}
+
 // Grandfather Clock GLOW
-function clockGlow() {
+function clockGlow(obj) {
+  let pulseSpeed = 0.5; // Adjust for faster/slower pulsing
+  let minWeight = 20; // Minimum glow thickness
+  let maxWeight = 80; // Maximum glow thickness
+
+  // Oscillate strokeWeight smoothly using sine function
+  let glowWeight = map(sin(frameCount * pulseSpeed), -1, 1, minWeight, maxWeight);
+
   beginShape();
-  // Set glow colour and transparency
-  stroke(153, 0, 255, 12);
-  strokeWeight(90);
+  stroke(60, 0, 90, 80);
+  strokeWeight(glowWeight); // Dynamic stroke weight
   fill(bgC);
-  // Define shape vertices
+
   vertex(380, 499);   // bottom left
   vertex(580, 500);   // bottom right
   vertex(580, vertexX);    // top right
-  bezierVertex(580, bezierY, 380, bezierY, 380, vertexX);   // top left curve
-  vertex(380, vertexX);   // closing top left
+  bezierVertex(580, bezierY, 380, bezierY, 380, vertexX);   // top curve
+  vertex(380, vertexX);   // top left
+
   endShape(CLOSE);
 }
 
@@ -71,8 +83,8 @@ function clockFace(obj) {
   line(400, 120, 420, 120);
   
   // Calculate hand angles
-  let minuteAngle = map(obj.minutes + obj.seconds / 60, 0, 60, 0, 360);
-  let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0, 12, 0, 360);
+  let minuteAngle = map(obj.minutes + obj.seconds / 60, 0,60, 0,360);
+  let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0,12, 0,360);
   
   // Draw minute hand
   drawHand(minuteAngle, color(254, 140, 25), 3, 70);
@@ -100,8 +112,8 @@ function drawHand(angle, handColour, lineWeight, handLength) {
 // Clock Pendulum
 function drawPendulum(obj) {
   // Draw the pendulum rod
-  if (obj.seconds < 30) {
-    // Draw the rod if seconds are less than 30
+  if (obj.seconds < 20) {
+    // Draw the rod if seconds are less than 20
     stroke(254, 140, 25);
     strokeWeight(2);
     line(480, pendulumY, 480, 210);
@@ -146,8 +158,19 @@ function draw_clock(obj) {
   background(bgC);
   angleMode(DEGREES);
   
+  
+  // Alarm
+  if(obj.seconds_until_alarm < 0 || obj.seconds_until_alarm === undefined){
+    // alarm not set
+  }else if(obj.seconds_until_alarm > 0) {
+    // alarm set
+    clockGlow(obj);
+  }else if (obj.seconds_until_alarm == 0){
+    // alarm is going off
+
+  }
   // Draw the clock elements
-  clockGlow();
+  // clockGlow();
   grandfatherClock();
   clockFace(obj);
   drawPendulum(obj);

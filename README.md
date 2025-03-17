@@ -3,7 +3,14 @@
 ## MDDN 242 Project 1: Time-based Media  
 
 ### THIS IS YOUR README
+Your Clock's Name
+Author: Renfred Tay
+Purpose: to create a functional clock with alarms using p5js
+Inspiration: Black light/neon aesthetic.
+A description of your overall design process that serves as your design journal (suggested: 300-600 words)
 
+
+    Record
 Update this file as you go along to record your progress.
 25/02/25
 Edited sketch.jpg to a basic idea of what I want to achieve.
@@ -12,16 +19,39 @@ Edited sketch.jpg to a basic idea of what I want to achieve.
 11/03/25
 Added static animations for minutes and seconds
 Needed
-    - Hour and minute hands 
-        - include their functionality
-    - Add real animations to everything.
+- Hour and minute hands 
+    - include their functionality
+- Add real animations to everything.
 
 12/03/25
-Added Increments
+Added "12, 3, 6, 9" indicators to the clock
 
 13/03/25
 1200
  - Added functionality to clock face and hands
+ - ChatGPT helped with:
+    1. Global Variables & Uninitialised Objects:
+        - "var oSeconds = obj.seconds" has been removed.
+        -  Missing semicolons have been added for consistency. 
+    2. line() in beginShape() removed
+    3. Parameter Handling:
+        - In clockFace(), you were referencing obj without accepting it as a parameter. Function modified to accept "obj" so that time values are accessible.
+    4. Typographical Errors:
+        - (strokkeWeight) has been corrected to strokeWeight.
+    5. Pendulum Drawing Logic:
+        - Replaced (obj.minutes++) it with a condition based solely on the seconds value.
+    6. Hand Angle Calculations:
+        - In minuteAngle: obj.sconds has been corrected to obj.seconds
+        - In hourAngle: range changed to 0–12 and maps it to 0-360°.
+        - drawHand() function now uses translate() so that the hands rotate about the clock centre, and the rotation is offset by 90° (since 0° in p5.js is along the positive x-axis).
 
 18/03/25
- - Got rid of Colour variables
+0000
+ - Got rid of Colour variables since they were breakingthe code
+1019
+ - Glowing effect added to "Alarm Set"
+    - ChatGPT helped with:
+        1. adding the pulseSpeed, minWeight, maxWeight, glowWeight
+        2. Taught me about sin() and frameCount
+ - played around with sin(), pulse, minWeight, maxWeight, glowWeight
+
