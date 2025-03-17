@@ -8,14 +8,23 @@ var bezierY = -20;
 var vertexX = 130;
 var strokeDefault = 3;
 var pendulumY = 420;
-// Colour Variables
-var neonCyan = color(77, 238, 234);
+// Colour RGB
+/*
+neon Pink =     color(240, 0, 255)
+neon Red =      color(252, 48, 50)
+neon Orange =   color(254, 140, 25)
+neon Yellow =   color(255, 255, 0)
+neon Green =    color(141, 242, 64)
+neon Cyan =     color(77, 238, 234)
+neon Blue =     color(51, 75, 255)
+neon Purple =   color(153, 0, 255)
+*/
 
 // Grandfather Clock GLOW
 function clockGlow() {
   beginShape();
   // Set glow colour and transparency
-  stroke(60, 0, 90, 35);
+  stroke(153, 0, 255, 12);
   strokeWeight(90);
   fill(bgC);
   // Define shape vertices
@@ -30,7 +39,7 @@ function clockGlow() {
 // Grandfather Clock Body
 function grandfatherClock() {
   beginShape();
-  stroke(60, 0, 90);
+  stroke(153, 0, 255);
   strokeWeight(strokeDefault);
   fill(bgC);
   // Construct shape using vertices (avoid using line() inside beginShape/endShape)
@@ -66,9 +75,9 @@ function clockFace(obj) {
   let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0, 12, 0, 360);
   
   // Draw minute hand
-  drawHand(minuteAngle, neonCyan, 3, 70);
+  drawHand(minuteAngle, color(254, 140, 25), 3, 70);
   // Draw hour hand (using white as an example)
-  drawHand(hourAngle, color(255, 255, 255), 4, 40);
+  drawHand(hourAngle, color(252, 48, 50), 4, 40);
   
   // Clock centre
   noStroke();
