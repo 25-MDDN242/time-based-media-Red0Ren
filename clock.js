@@ -8,6 +8,8 @@ var bezierY = -20;
 var vertexX = 130;
 var strokeDefault = 3;
 var pendulumY = 420;
+let colorToggle = 0;
+
 // Colour RGB
 /*
 neon Pink =     color(240, 0, 255)
@@ -21,10 +23,20 @@ neon Purple =   color(153, 0, 255)
 */
 
 // Alarm
+// draw = 
 function alarmLights() {
-  circle(480,250,20);
-  circle(480,250,20);
+  var strobe = {
+    d: 20,
+    y: 250,
+    x: 50
+  };
+  for (let i = 0; i < 10; i++) {
+    fill(240,0,255, 90)
+    circle(strobe.x, strobe.y, strobe.d);
+    strobe.x += 95;
+  }
 }
+
 
 // Grandfather Clock GLOW
 function clockGlow(obj) {
@@ -159,7 +171,6 @@ function draw_clock(obj) {
   background(bgC);
   angleMode(DEGREES);
   
-  
   // Alarm
   if(obj.seconds_until_alarm < 0 || obj.seconds_until_alarm === undefined){
     // alarm not set
@@ -168,12 +179,12 @@ function draw_clock(obj) {
     clockGlow(obj);
   }else if (obj.seconds_until_alarm == 0){
     // alarm is going off
-
+    
   }
+  alarmLights();
   // Draw the clock elements
   // clockGlow();
   // grandfatherClock();
   // clockFace(obj);
   // drawPendulum(obj);
-  alarmLights();
 }
