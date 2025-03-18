@@ -22,7 +22,8 @@ neon Purple =   color(153, 0, 255)
 
 // Alarm
 function alarmLights() {
-  
+  circle(480,250,20);
+  circle(480,250,20);
 }
 
 // Grandfather Clock GLOW
@@ -171,7 +172,8 @@ function draw_clock(obj) {
   }
   // Draw the clock elements
   // clockGlow();
-  grandfatherClock();
-  clockFace(obj);
-  drawPendulum(obj);
+  // grandfatherClock();
+  // clockFace(obj);
+  // drawPendulum(obj);
+  alarmLights();
 }
