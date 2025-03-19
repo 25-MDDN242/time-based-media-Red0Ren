@@ -8,7 +8,10 @@ var bezierY = -20;
 var vertexX = 130;
 var strokeDefault = 3;
 var pendulumY = 420;
-let colorToggle = 0;
+let colorScheme = {
+  one: color(255),
+  two: color(bgC)
+}
 
 // Colour RGB
 /*
@@ -23,32 +26,45 @@ neon Purple =   color(153, 0, 255)
 */
 
 // Alarm
-// draw = 
-function alarmLights() {
-  var strobe = {
+
+function strobeLights(frameCount) {
+  // variables
+  let blinkSpeed = 5; // Lower = faster blink
+  let isOn = floor(frameCount / blinkSpeed) % 2 === 0; // Toggle every `blinkSpeed` frames
+  let pulseSpeed = 1; // Adjust for faster/slower pulsing
+  let strobe = {
     d: 20,
-    y: 250,
-    x: 50
+    startY: 250,
+    endY: 450
   };
-  for (let i = 0; i < 10; i++) {
-    fill(240,0,255, 90)
-    circle(strobe.x, strobe.y, strobe.d);
-    strobe.x += 95;
+
+  // Oscillate strokeWeight smoothly using sine function
+  let strobePos = map(sin(frameCount * pulseSpeed), 0, 1, strobe.startY, strobe.endY);
+
+  if (isOn) {
+    stroke(141, 242, 64); // White lights on
+  } else {
+    stroke(bgC); // Lights off (black)
+  }
+
+  strokeWeight(strobe.d);
+  
+  for (let x = 50; x <= 905; x += 95) {
+    line(x, strobe.startY, x, strobePos);
   }
 }
 
-
 // Grandfather Clock GLOW
 function clockGlow(obj) {
-  let pulseSpeed = 0.5; // Adjust for faster/slower pulsing
-  let minWeight = 20; // Minimum glow thickness
+  let pulseSpeed = 1; // Adjust for faster/slower pulsing
+  let minWeight = strokeDefault; // Minimum glow thickness
   let maxWeight = 80; // Maximum glow thickness
 
   // Oscillate strokeWeight smoothly using sine function
   let glowWeight = map(sin(frameCount * pulseSpeed), -1, 1, minWeight, maxWeight);
 
   beginShape();
-  stroke(60, 0, 90, 80);
+  stroke(60, 0, 90, 95);
   strokeWeight(glowWeight); // Dynamic stroke weight
   fill(bgC);
 
@@ -179,12 +195,13 @@ function draw_clock(obj) {
     clockGlow(obj);
   }else if (obj.seconds_until_alarm == 0){
     // alarm is going off
-    
+    strobeLights(frameCount);
   }
-  alarmLights();
+
+  // strobeLights(frameCount);
+
   // Draw the clock elements
-  // clockGlow();
-  // grandfatherClock();
-  // clockFace(obj);
-  // drawPendulum(obj);
+  grandfatherClock();
+  clockFace(obj);
+  drawPendulum(obj);
 }

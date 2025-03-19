@@ -3,14 +3,14 @@
 ## MDDN 242 Project 1: Time-based Media  
 
 ### THIS IS YOUR README
-Your Clock's Name
+Tay_Renfred_Clock
 Author: Renfred Tay
 Purpose: to create a functional clock with alarms using p5js
 Inspiration: Black light/neon aesthetic.
 A description of your overall design process that serves as your design journal (suggested: 300-600 words)
 
 
-    Record
+    Design Process
 Update this file as you go along to record your progress.
 25/02/25
 Edited sketch.jpg to a basic idea of what I want to achieve.
@@ -55,3 +55,16 @@ Added "12, 3, 6, 9" indicators to the clock
         2. Taught me about sin() and frameCount
  - played around with sin(), pulse, minWeight, maxWeight, glowWeight
 
+19/03/25
+2359
+Progress:
+- added alarm and functions
+
+ChatGPT Helped with:
+- blinking strobe lights in a way that doesn't use "function draw(){}"
+
+Odd Thing:
+- I want to make a first step towards something bigger, so I reused some code from this code, and it ended up doing the "something bigger" immediately.
+
+        Summary
+I had a single idea for
