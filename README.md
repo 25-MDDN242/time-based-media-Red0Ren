@@ -66,5 +66,15 @@ ChatGPT Helped with:
 Odd Thing:
 - I want to make a first step towards something bigger, so I reused some code from this code, and it ended up doing the "something bigger" immediately.
 
-        Summary
-I had a single idea for
+20/03/25
+1030
+- animated ball, with help from Phoebe Zeller
+Next
+- Animate rod disappearing/reappearing
+
+
+    Artist Statement
+I am a [blank]
+I made [blank]
+My artwork looks like [blank]
+I make (line 2) because of [blank]

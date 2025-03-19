@@ -38,7 +38,7 @@ function strobeLights(frameCount) {
     endY: 450
   };
 
-  // Oscillate strokeWeight smoothly using sine function
+  // Oscillate strobePos smoothly using sine function
   let strobePos = map(sin(frameCount * pulseSpeed), 0, 1, strobe.startY, strobe.endY);
 
   if (isOn) {
@@ -48,23 +48,21 @@ function strobeLights(frameCount) {
   }
 
   strokeWeight(strobe.d);
-  
+
   for (let x = 50; x <= 905; x += 95) {
     line(x, strobe.startY, x, strobePos);
   }
 }
 
 // Grandfather Clock GLOW
-function clockGlow(obj) {
+function clockGlow(minWeight, maxWeight, transparency) {
   let pulseSpeed = 1; // Adjust for faster/slower pulsing
-  let minWeight = strokeDefault; // Minimum glow thickness
-  let maxWeight = 80; // Maximum glow thickness
 
   // Oscillate strokeWeight smoothly using sine function
   let glowWeight = map(sin(frameCount * pulseSpeed), -1, 1, minWeight, maxWeight);
 
   beginShape();
-  stroke(60, 0, 90, 95);
+  stroke(153, 0, 255, transparency);
   strokeWeight(glowWeight); // Dynamic stroke weight
   fill(bgC);
 
@@ -98,9 +96,9 @@ function clockFace(obj) {
   stroke("#FFFF00");
   strokeWeight(strokeDefault);
   circle(480, 120, 160);
-  
+
   // Increments on the clock face
-  stroke(240, 0, 255);
+  stroke(153, 0, 255);
   strokeWeight(4);
   // 12 o'clock
   line(480, 60, 480, 40);
@@ -110,22 +108,23 @@ function clockFace(obj) {
   line(480, 180, 480, 200);
   // 9 o'clock
   line(400, 120, 420, 120);
-  
+
   // Calculate hand angles
-  let minuteAngle = map(obj.minutes + obj.seconds / 60, 0,60, 0,360);
-  let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0,12, 0,360);
-  
+  let minuteAngle = map(obj.minutes + obj.seconds / 60, 0, 60, 0, 360);
+  let hourAngle = map(obj.hours % 12 + obj.minutes / 60, 0, 12, 0, 360);
+
   // Draw minute hand
   drawHand(minuteAngle, color(254, 140, 25), 3, 70);
   // Draw hour hand (using white as an example)
   drawHand(hourAngle, color(252, 48, 50), 4, 40);
-  
+
   // Clock centre
   noStroke();
-  fill("white");
+  fill(77, 238, 234);
   circle(480, 120, 5);
 }
 
+// Minute and Hour hands
 function drawHand(angle, handColour, lineWeight, handLength) {
   push();
   // Move the origin to the centre of the clock face
@@ -140,33 +139,52 @@ function drawHand(angle, handColour, lineWeight, handLength) {
 
 // Clock Pendulum
 function drawPendulum(obj) {
-  // Draw the pendulum rod
+  // ROD
+  // rod Variables
+  var rod = {
+    minX: 40,
+    minY: 40,
+    maxX: 100,
+    maxY: 100,
+  }
+  // Rod conditions
   if (obj.seconds < 20) {
-    // Draw the rod if seconds are less than 20
+    // ball.size = map(obj.millis, 0, 999, ball.max, ball.min);
+    // // Draw rod glow
+    // stroke(254, 140, 25, 35);
+    // strokeWeight(20);
+    // line(480, pendulumY, 480, 210);
+  } else {
+    // // Erase the rod by drawing it in the background colour
+    // stroke(bgC);
+    // strokeWeight(2);
+    // line(480, pendulumY, 480, 210);
+  }
+// Draw the rod
     stroke(254, 140, 25);
     strokeWeight(2);
-    line(480, pendulumY, 480, 210);
-    // Draw rod glow
-    stroke(254, 140, 25, 35);
-    strokeWeight(20);
-    line(480, pendulumY, 480, 210);
-  } else {
-    // Erase the rod by drawing it in the background colour
-    stroke(bgC);
-    strokeWeight(2);
-    line(480, pendulumY, 480, 210);
-  }
-  
-  // Draw the pendulum ball with differing sizes for "tick" and "tock"
+    line(480, 420, 480, 210);
+
+  // BALL
   noStroke();
   fill(77, 238, 234);
-  if (obj.seconds % 2 === 0) {
-    // Tick – larger ball
-    circle(480, pendulumY, 110);
-  } else {
-    // Tock – smaller ball
-    circle(480, pendulumY, 40);
+  // ball Variables
+  var ball = {
+    min: 40,
+    max: 100,
+    size: 40
   }
+  let modSec2 = obj.seconds % 2; // large when even, small when odd
+
+  // Ball conditions
+  if (modSec2 > 0) {
+    ball.size = map(obj.millis, 0, 999, ball.max, ball.min);
+
+  } else {
+    ball.size = map(obj.millis, 0, 999, ball.min, ball.max);
+  }
+  // Draw ball
+  circle(480, pendulumY, ball.size);
 }
 
 // Main Drawing Function
@@ -182,23 +200,23 @@ function draw_clock(obj) {
          = 0 if the alarm is going off,
          > 0 for the number of seconds until the alarm.
   */
-  
+
   // Clear the canvas and set angle mode
   background(bgC);
   angleMode(DEGREES);
-  
+
   // Alarm
-  if(obj.seconds_until_alarm < 0 || obj.seconds_until_alarm === undefined){
+  if (obj.seconds_until_alarm < 0 || obj.seconds_until_alarm === undefined) {
     // alarm not set
-  }else if(obj.seconds_until_alarm > 0) {
+  } else if (obj.seconds_until_alarm > 0) {
     // alarm set
-    clockGlow(obj);
-  }else if (obj.seconds_until_alarm == 0){
+    clockGlow(3, 80, 20); // Phase III
+    clockGlow(3, 50, 40); // Phase II
+    clockGlow(3, 30, 70); // Phase I
+  } else if (obj.seconds_until_alarm == 0) {
     // alarm is going off
     strobeLights(frameCount);
   }
-
-  // strobeLights(frameCount);
 
   // Draw the clock elements
   grandfatherClock();
