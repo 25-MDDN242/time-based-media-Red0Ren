@@ -26,7 +26,6 @@ neon Purple =   color(153, 0, 255)
 */
 
 // Alarm
-
 function strobeLights(frameCount) {
   // variables
   let blinkSpeed = 5; // Lower = faster blink
@@ -142,29 +141,31 @@ function drawPendulum(obj) {
   // ROD
   // rod Variables
   var rod = {
-    minX: 40,
-    minY: 40,
-    maxX: 100,
-    maxY: 100,
+    min: 0,
+    max:5,
+    weight: 0
   }
   // Rod conditions
-  if (obj.seconds < 20) {
-    // ball.size = map(obj.millis, 0, 999, ball.max, ball.min);
-    // // Draw rod glow
-    // stroke(254, 140, 25, 35);
-    // strokeWeight(20);
-    // line(480, pendulumY, 480, 210);
+  if (obj.seconds < 10) {
+    rod.weight = map(obj.seconds, 0, 9, rod.min, rod.max);
+  } else if (obj.seconds >=10){
+    rod.weight = map(obj.seconds, 10, 20, rod.max, rod.min);
+    //  // Draw the rod
+    //  stroke(254, 140, 25);
+    //  strokeWeight(rod.weight);
+    //  line(480, 420, 480, 210);
   } else {
-    // // Erase the rod by drawing it in the background colour
-    // stroke(bgC);
-    // strokeWeight(2);
-    // line(480, pendulumY, 480, 210);
+    // After 20 seconds, set thickness to 0 (completely gone)
+    rod.weight = 0;
   }
-// Draw the rod
+  
+  // Draw the rod only if it has weight
+  if (rod.weight > 0) {
     stroke(254, 140, 25);
-    strokeWeight(2);
+    strokeWeight(rod.weight);
     line(480, 420, 480, 210);
-
+  }
+ 
   // BALL
   noStroke();
   fill(77, 238, 234);

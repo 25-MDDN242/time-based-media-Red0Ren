@@ -74,7 +74,4 @@ Next
 
 
     Artist Statement
-I am a [blank]
-I made [blank]
-My artwork looks like [blank]
-I make (line 2) because of [blank]
+I, Renfred Tay, am an interactive design student. I made "Rave Grandpa," a clock designed after a grandfather clock with a neon, rave aesthetic. I made "Rave Grandpa" because it seemed simplistic enough for me to code, plus I thought it ironic to combine something "old," a grandfather clock, and something, "modern," raves. The clock face works like a regualr clock face and gives it the grandfather clock look. The cyan blinking circle acts as the pendulum, also representing the seconds increasing in size every 2nd second. The orange rod connecting the pendulum to the clock face slowly lights up every minute, I wanted to give off a look that the pendulum is sending a signal to the clock face and changing the minute. For the alarm, I thought to just make it strobe lights from rave concerts, to prove the rave and neon asethtic.
