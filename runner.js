@@ -34,6 +34,7 @@ function setup () {
     debug_setup();
   }
   turn_off_alarm();
+  
 }
 
 function sliderUpdated() {
